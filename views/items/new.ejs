@@ -1,0 +1,117 @@
+<%layout("/layouts/boilerplate")%>
+<style>
+  .category {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
+<body>
+  <div class="row">
+    <div class="col-8 offset-2 mt-3">
+      <h1>Sell a New Item</h1>
+      <br />
+      <form
+        action="/items"
+        method="POST"
+        novalidate
+        class="needs-validation"
+        enctype="multipart/form-data"
+      >
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input
+            name="item[title]"
+            class="form-control"
+            type="text"
+            placeholder="Add a catchy title"
+            required
+          />
+          <div class="valid-feedback">title looks good!</div>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            name="item[description]"
+            class="form-control"
+            required
+          ></textarea>
+          <div class="invalid-feedback">Please enter a short description</div>
+        </div>
+        <div class="mb-3">
+          <label for="image" class="form-label">Upload Item Image</label>
+          <input
+            name="item[image]"
+            class="form-control"
+            type="file"
+            required
+          />
+        </div>
+        <div class="row">
+          <div class="mb-3 col-md-4">
+            <label for="price" class="form-label">Price</label>
+            <input
+              name="item[price]"
+              class="form-control"
+              placeholder="1800"
+              required
+            />
+            <div class="invalid-feedback">Price should be valid</div>
+          </div>
+
+          <div class="mb-3 col-md-4 category">
+            <label for="category" class="form-label">Category</label>
+            <select class="form-select" name="item[category]">
+              <option selected value="clothes">Clothes</option>
+              <option value="sports">Sports</option>
+              <option value="electronics">Electronics</option>
+              <option value="toys">Toys</option>
+              <option value="books">Books</option>
+              <option value="furniture">Furniture</option>
+              <option value="household">House Hold</option>
+              <option value="others">Others</option>
+            </select>
+          </div>
+
+          <div class="mb-3 col-md-4">
+            <label for="country" class="form-label">Country</label>
+            <input
+              name="item[country]"
+              class="form-control"
+              type="text"
+              placeholder="India"
+              required
+            />
+            <div class="invalid-feedback">Country name should be valid</div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="location" class="form-label">Location</label>
+          <input
+            name="item[location]"
+            class="form-control"
+            type="text"
+            placeholder="Palamaner, Andhra Pradesh"
+            required
+          />
+          <div class="invalid-feedback">Location should be valid</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="phone" class="form-label">Mobile Number</label>
+          <input
+            name="item[phone]"
+            class="form-control"
+            type="text"
+            placeholder="9999999999"
+            required
+          />
+          <div class="invalid-feedback">Phone number should be valid</div>
+        </div>
+
+        <button class="btn btn-dark add-btn mt-3">Add</button>
+        <br /><br />
+      </form>
+    </div>
+  </div>
+</body>

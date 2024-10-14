@@ -1,0 +1,162 @@
+<%layout("/layouts/boilerplate")%>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+<script src="https://apis.mappls.com/advancedmaps/api/8aa77abd42e9c8c3d6d3fe30cf10c3c8/map_sdk?v=3.0&layer=vector"></script>
+
+<body>
+  <div class="row mt-3">
+    <div class="col-10 offset-2">
+      <h3><%= item.title %></h3>
+    </div>
+    <div
+      class="card col-10 offset-2 col-lg-8 offset-lg-2 show-card item-card mx-auto"
+    >
+      <img
+        src="<%= item.image.url %>"
+        class="card-img-top show-img"
+        id="hi"
+        alt="..."
+      />
+
+      <div class="card-body">
+        <p class="card-text mt-3">
+          Owned By :<i><%= item.owner.username %></i>
+        </p>
+        <p class="card-text"><%= item.description %></p>
+
+        <% if (item.category) { %>
+
+        <p class="card-text">
+          Category : <%= item.category.charAt(0).toUpperCase() +
+          item.category.slice(1) %>
+        </p>
+
+        <% } %>
+        <p>&#8377;<%=item.price.toLocaleString("en-IN") %></p>
+        <p><%= item.location %></p>
+        <p><%= item.country %></p>
+        <p>Contact : <%= item.phone %></p>
+      </div>
+    </div>
+  </div>
+  <%if (currUser && currUser._id.equals(item.owner._id)) { %>
+
+  <div class="btns col-8 offset-2">
+    <a href="/items/<%= item._id %>/edit" class="btn btn-dark edit-btn me-3"
+      >&nbsp;&nbsp;Edit&nbsp;&nbsp;</a
+    >
+    <form
+      method="POST"
+      action="/items/<%= item.id %>?_method=DELETE"
+      class="d-inline"
+    >
+      <button class="btn btn-dark">Delete</button>
+    </form>
+  </div>
+  <%} %>
+
+  <div class="row">
+    <div class="col-lg-2 col-1"></div>
+    <div class="col-lg-8 col-10">
+      <div class="feedback-form">
+        <% if (currUser) { %>
+        <hr />
+        <h4 class="text-center">Leave a FeedBack</h4>
+        <form
+          action="/items/<%= item.id %>/feedbacks"
+          method="POST"
+          novalidate
+          class="needs-validation"
+        >
+          <div class="mb-3 mt-3">
+            <label for="comment" class="form-label">Comments</label>
+            <textarea
+              name="feedback[comment]"
+              id="comment"
+              cols="30"
+              rows="5"
+              class="form-control"
+              placeholder="If purchased / sold out please mention here"
+              required
+            ></textarea>
+            <div class="invalid-feedback">
+              Please add some comments if you have purchased it or it is sold
+            </div>
+          </div>
+          <button class="btn btn-outline-dark mt-3 mb-3">Submit</button>
+        </form>
+
+        <% } %> <% if (item.feedbacks.length>0) { %>
+        <hr />
+        <div class="row">
+          <h4 class="text-center mb-4">All FeedBacks</h4>
+          <% for(feedback of item.feedbacks) { %>
+          <div class="card col-10 col-md-5 mb-3 mx-auto">
+            <div class="card-body">
+              <div class="card-title">@<%= feedback.author.username %></div>
+              <p
+                class="starability-result card-text"
+                data-rating="<%= feedback.rating %>"
+              ></p>
+              <p class="card-text"><%= feedback.comment %></p>
+            </div>
+            <%if (currUser && currUser._id.equals(feedback.author._id)) { %>
+            <form
+              action="/items/<%= item._id %>/feedbacks/<%= feedback._id %>?_method=DELETE"
+              class="mb-3 mt-3"
+              method="POST"
+            >
+              <button class="btn btn-sm btn-dark deleteBtn">Delete</button>
+            </form>
+            <%} %>
+          </div>
+          <% } %>
+        </div>
+        <% } %>
+      </div>
+    </div>
+    <div class="col-lg-2 col-1"></div>
+  </div>
+
+  <hr class="col-10 offset-1 col-lg-8 offset-lg-2" />
+
+  <div class="row mt-3 mb-3">
+    <div class="map col-10 offset-1">
+      Where you will collect : <b><%=item.location%>, <%=item.country%></b>
+      <br />
+      <div id="map"></div>
+    </div>
+  </div>
+
+  <script>
+    let lng = "<%=item.geometry.coordinates[1] %>";
+    let lat = "<%=item.geometry.coordinates[0] %>";
+    console.log(lng, "..", lat);
+    map = new mappls.Map("map", {
+      zoom: 10,
+      center: { lat: lat, lng: lng },
+      zoomControl: true,
+      draggable: true,
+      scrollWheelZoom: false,
+      doubleClickZoom: false,
+    });
+
+    var marker = new mappls.Marker({
+      map: map,
+      position: { lat: lat, lng: lng },
+      width: 40,
+      height: 70,
+      popupOptions: true,
+      popupHtml: "<b> <%=item.title%> </b>",
+      clustersOptions: { color: "blue", bgcolor: "red" },
+      icon_url:
+        "https://res.cloudinary.com/dzsgjnpzh/image/upload/v1720779221/wanderlust_DEV/owkyouuk881nw4bi4ykj.png",
+    });
+  </script>
+</body>

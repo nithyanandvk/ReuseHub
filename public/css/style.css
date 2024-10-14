@@ -1,0 +1,194 @@
+body {
+  font-family: "plus Jakarta Sans", sans-serif !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.container {
+  flex: 1;
+}
+.navbar {
+  height: 5rem;
+  background-color: white;
+}
+
+.fa-compass {
+  color: #106cfc;
+  font-size: 2rem;
+}
+
+.nav-link {
+  color: #222222 !important;
+}
+
+.item-card {
+  border: none !important;
+  margin-bottom: 2rem;
+}
+.card-img-top {
+  border-radius: 1rem !important;
+  width: 100% !important;
+  object-fit: cover !important;
+}
+
+.card-body {
+  padding: 0 !important;
+}
+
+.card-text p {
+  font-weight: 400 !important;
+}
+.item-link {
+  text-decoration: none;
+}
+.card-img-overlay {
+  opacity: 0;
+}
+
+.card-img-overlay:hover {
+  opacity: 0.3;
+  background-color: white;
+}
+
+.add-btn {
+  background-color: #fe424d;
+  border: none;
+}
+
+.edit-btn {
+  background-color: #fe424d;
+  border: none;
+}
+
+.show-img {
+  height: 25rem;
+}
+
+@media (max-width: 500px) {
+  .show-img {
+    height: 20rem;
+  }
+}
+
+.btns {
+  display: flex;
+}
+
+/*map*/
+
+#map {
+  height: 25rem;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 1rem;
+}
+
+.map {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* navbar */
+
+.search-btn {
+  background-color: #106cfc;
+  color: #fff;
+  padding: 0 1rem 0 1rem;
+}
+
+.search-btn:hover {
+  background-color: #106cfc;
+  color: #fff;
+}
+
+.search-btn i {
+  display: inline;
+  margin-right: 0.5rem;
+}
+
+.search-inp {
+  padding: 0.5rem 3rem;
+  font-size: 1rem;
+}
+
+/* index */
+#filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: row;
+  justify-content:space-around;
+}
+
+.filter-form {
+  margin-top: 1rem;
+}
+
+.filter {
+  text-align: center;
+  opacity: 0.7;
+}
+
+.filter:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.filter p {
+  font-size: 0.8rem;
+}
+
+
+
+@media (max-width: 500px) {
+  .search-inp {
+    padding: 0.5rem 2.4rem;
+    font-size: 0.9rem;
+  }
+}
+
+#filters button {
+  all: unset;
+}
+
+.navbar {
+  transition: background-color 0.3s;
+}
+.navbar-collapse {
+  background: white;
+}
+
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: none;
+}
+footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+}
+footer a{
+  text-decoration: none;
+}
+#hi{
+  height: 30rem;
+  width: 25rem !important;
+}
+@media (max-width: 500px) {
+  #hi{
+    height: 20rem;
+    width: 16rem !important;
+  }
+  #filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: row;
+  }
+  .filter {
+    margin-right: 1.5rem;
+  }
+}

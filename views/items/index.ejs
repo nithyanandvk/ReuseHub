@@ -1,0 +1,101 @@
+<%layout("/layouts/boilerplate")%>
+<!-- <h3>All Items</h3> -->
+<div id="filters">
+  <form action="/items/filter/clothes" class="filter-form" method="get">
+    <button type="submit">
+      <div class="filter">
+        <div><i class="fa-solid fa-shirt"></i></div>
+        <p>Clothes</p>
+      </div>
+    </button>
+  </form>
+
+  <form action="/items/filter/sports" class="filter-form" method="get">
+    <button type="submit">
+      <div class="filter">
+        <div><i class="fa-solid fa-baseball"></i></div>
+        <p>Sports</p>
+      </div>
+    </button>
+  </form>
+
+  <form action="/items/filter/electronics" class="filter-form" method="get">
+    <button type="submit">
+      <div class="filter">
+        <div><i class="fa-solid fa-plug"></i></div>
+        <p>Electronics</p>
+      </div>
+    </button>
+  </form>
+
+  <form action="/items/filter/toys" class="filter-form" method="get">
+    <button type="submit">
+      <div class="filter">
+        <div><i class="fa-solid fa-gamepad"></i></div>
+        <p>Toys</p>
+      </div>
+    </button>
+  </form>
+
+  <form action="/items/filter/books" class="filter-form" method="get">
+    <button type="submit">
+      <div class="filter">
+        <div><i class="fa-solid fa-book"></i></div>
+        <p>Books</p>
+      </div>
+    </button>
+  </form>
+
+  <form action="/items/filter/furniture" class="filter-form" method="get">
+    <button type="submit">
+      <div class="filter">
+        <div><i class="fa-solid fa-couch"></i></div>
+        <p>Furniture</p>
+      </div>
+    </button>
+  </form>
+
+  <form action="/items/filter/household" class="filter-form" method="get">
+    <button type="submit">
+      <div class="filter">
+        <div><i class="fa-solid fa-rug"></i></div>
+        <p>House Hold</p>
+      </div>
+    </button>
+  </form>
+
+  <form action="/items/filter/others" class="filter-form" method="get">
+    <button type="submit">
+      <div class="filter">
+        <div><i class="fa-solid fa-globe"></i></div>
+        <p>Others</p>
+      </div>
+    </button>
+  </form>
+</div>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+  <%for(let item of allItems){%>
+  <a href="/items/<%= item._id %>" class="item-link">
+    <div class="card col item-card">
+      <img
+        src="<%= item.image.url %>"
+        style="height: 20rem"
+        class="card-img-top"
+        alt="item-image"
+      />
+      <div class="card-img-overlay"></div>
+      <div class="card-body">
+        <p class="card-text">
+          <b><%= item.title %></b><br />
+          <% if (item.category) { %> Category :
+          <%=item.category.charAt(0).toUpperCase()+item.category.slice(1)%>
+          <br />
+          <% } %> &#8377;<%= item.price.toLocaleString("en-IN") %>
+        </p>
+      </div>
+    </div>
+    <%}%>
+  </a>
+</div>
+
