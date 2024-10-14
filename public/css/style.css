@@ -1,5 +1,5 @@
 body {
-  font-family: "plus Jakarta Sans", sans-serif !important;
+  font-family: Verdana ,Arial, sans-serif !important;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -90,8 +90,6 @@ body {
   justify-content: center;
 }
 
-/* navbar */
-
 .search-btn {
   background-color: #106cfc;
   color: #fff;
@@ -113,7 +111,6 @@ body {
   font-size: 1rem;
 }
 
-/* index */
 #filters {
   display: flex;
   flex-wrap: wrap;
@@ -169,6 +166,7 @@ footer{
   flex-direction: row;
   justify-content: space-between;
   text-align: center;
+  font-size: 0.9rem;
 }
 footer a{
   text-decoration: none;
